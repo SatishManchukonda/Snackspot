@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<head>
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.body {
+  font-family:Verdana;
+  line-height: 1.6;
+  color:rgb(127, 108, 108);
+}
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background:rgb(224, 96, 96);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-logo {
+  font-size:25px;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap:20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+.cart-icon {
+  font-size:30px;
+}
+
+
+.hero {
+  text-align: center;
+  padding: 20px 30px;
+  background: #ffeaa7;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 40px;
+  margin-bottom: 3px;
+}
+
+.hero p {
+  font-size:15px;
+  margin-bottom:25px;
+}
+
+.btn {
+  padding:15px 20px;
+  font-size:18px;
+  background:rgb(231, 102, 102);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background:rgb(206, 92, 92);
+}
+
+
+.menu {
+  padding:15px 5px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.menu h2 {
+  text-align: center;
+  margin-bottom:10px;
+  font-size:25px;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap:7px;
+  margin-bottom:15px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding:9px 13px;
+  border: 2px solid rgb(255, 104, 104);
+  background: white;
+  color:rgb(254, 105, 105);
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.filter-btn.active {
+  background:rgb(232, 101, 101);
+  color: white;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap:25px;
+}
+.menu-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+.menu-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.menu-card-content {
+  padding:15px;
+}
+
+.menu-card h3 {
+  margin-bottom:2px;
+  font-size:20px;
+}
+
+.menu-card p {
+  color:black;
+  margin-bottom:30px;
+}
+
+.menu-card .price {
+  font-weight: bold;
+  color:rgb(255, 115, 115);
+  font-size:20px;
+}
+
+.menu-card button {
+  width: 100%;
+  padding:10px;
+  background:rgb(206, 69, 69);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.menu-card button:hover {
+  background:rgb(205, 69, 69);
+}
+
+.about, .contact {
+  padding:25px 35px;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about h2, .contact h2 {
+  margin-bottom:20px;
+  font-size:30px;
+}
+.footer {
+  text-align: center;
+  padding:30px;
+  background:rgb(69, 69, 69);
+  color: white;
+}
+
+
+
+@media only screen and (max-width:480px) {
+  .hero h1 {
+    width:100% !important;
+    font-size:30px !important;
+  }
+
+  .menu-grid {
+    width:100% !important;
+    display:block !important;
+  }
+
+  .nav-links {
+    gap:15px !important;
+  }
+}
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SnackSpot – Telugu Snacks</title>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-logo">SnackSpot</div>
+    <ul class="nav-links">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="cart-icon">
+      🛒 <span id="cart-count">0</span>
+    </div>
+  </nav>
+
+
+  <section id="home" class="hero">
+    <h1>Traditional Telugu Snacks</h1>
+    <p>Fresh, crispy, and full of flavor – made with love.</p>
+    <button class="btn">View Menu</button>
+  </section>
+
+  <section id="menu" class="menu">
+    <h2>Our Menu</h2>
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="crispy">crispy</button>
+      <button class="filter-btn" data-filter="sweet">Sweet</button>
+      <button class="filter-btn" data-filter="spicy">Spicy</button>
+    </div>
+    <div class="menu-grid" id="menu-grid">
+    
+    </div>
+  </section>
+
+  
+  <section id="about" class="about">
+    <h2>About SnackSpot</h2>
+    <p>We make traditional Telugu snacks like karapusa, garjalu, chekka, and appalu using authentic recipes passed down through generations.</p>
+  </section>
+
+
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <p>Phone: +918106215137</p>
+    <p>Email:msatish@gmail.com</p>
+  </section>
+
+  
+  <footer class="footer">
+    <p>&copy; 2025 SnackSpot. All rights reserved.</p>
+  </footer>
+  <script>
+
+const menuItems = [
+  {
+    id: 2,
+    name: "Aakupakodi",
+    price: "₹250/kg",
+    category: "crispy",
+    description: "crspy in every bite,aakupakodi.",
+    image: "aakupakodi.JFIF"
+  },
+  {
+    id: 3,
+    name: "Chekka Appalu",
+    price: "₹250/kg",
+    category: "spicy",
+    description: "Traditional chekka with a perfect crunch.",
+    image: "appalu.JFIF"
+  },
+  {
+    id: 4,
+    name: "Murukulu",
+    price: "₹250/kg",
+    category: "crispy",
+    description: "Soft appalu, a Telugu classic.",
+    image: "murukulu.JFIF"
+  },
+  {
+    id: 5,
+    name: "Chekodi",
+    price: "₹250/kg",
+    category: "spicy",
+    description: "A spicy  traditional Telugu snacks.",
+    image: "cehkodi.JFIF"
+  },
+  {
+    id: 6,
+    name: "Karapusa",
+    price: "₹250/kg",
+    category: "spicy",
+    description: "A spicy  traditional Telugu snacks.",
+    image: "karapusa.jfif"
+  },
+  {
+    id: 6,
+    name: "Sakinalu",
+    price: "₹250/kg",
+    category: "spicy",
+    description: "A spicy  traditional Telugu snacks.",
+    image: "sakinalu.jfif"
+  },
+];
+
+// DOM elements
+const menuGrid = document.getElementById('menu-grid');
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cartCount = document.getElementById('cart-count');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+let cart = 0;
+
+// Render menu items
+function renderMenu(items) {
+  menuGrid.innerHTML = '';
+  items.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'menu-card';
+    card.innerHTML = `
+      <img src="${item.image}" alt="${item.name}">
+      <div class="menu-card-content">
+        <h3>${item.name}</h3>
+        <p>${item.description}</p>
+        <p class="price">${item.price}</p>
+        <button onclick="addToCart(${item.id})">Add to Cart</button>
+      </div>
+    `;
+    menuGrid.appendChild(card);
+  });
+}
+
+// Filter menu
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Update active button
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const filter = btn.getAttribute('data-filter');
+    if (filter === 'all') {
+      renderMenu(menuItems);
+    } else {
+      const filtered = menuItems.filter(item => item.category === filter);
+      renderMenu(filtered);
+    }
+  });
+});
+
+// Add to cart
+function addToCart(id) {
+  cart++;
+  cartCount.textContent = cart;
+  alert('Added to cart! Total items: ${cart}');
+}
+
+// Smooth scroll for navbar links
+navLinks.forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    window.scrollTo({
+      top: targetSection.offsetTop - 70,
+      behavior: 'smooth'
+    });
+
+    
+  });
+});
+renderMenu(menuItems);
+</script>
+</body>
+</html>
